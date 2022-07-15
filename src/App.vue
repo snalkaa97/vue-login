@@ -53,7 +53,7 @@ export default {
       }
     })
     .then(response => {
-      this.$store.commit("setUser", response.data);
+      this.$store.commit("setProfile", response.data);
     })
     .catch(error => {
       console.log(error);
@@ -65,30 +65,29 @@ export default {
         email: '',
         token: ''
       }
-      axios.post(`${this.$store.getters.baseUrl}/logout`,{
+      axios.post(`${this.$store.getters.baseUrl}/logout`,{},{
         headers: {
           "Authorization": `Bearer ${localStorage.getItem("token")}`
         }
       })
       .then(response => {
-        if(response.logout){
+        console.log(response);
           this.$store.commit("setUser", user);
           this.$store.commit("setIsLoggedIn", false);
           this.$router.push("/login");
           localStorage.removeItem('token');
           localStorage.removeItem('login');
           window.location.reload();
-        }
       })
       .catch(error => {
         console.log(error);
       });
-        this.$store.commit("setUser", user);
-        this.$store.commit("setIsLoggedIn", false);
-        this.$router.push("/login");
-        localStorage.removeItem('token');
-        localStorage.removeItem('login');
-        window.location.reload();
+        // this.$store.commit("setUser", user);
+        // this.$store.commit("setIsLoggedIn", false);
+        // this.$router.push("/login");
+        // localStorage.removeItem('token');
+        // localStorage.removeItem('login');
+        // window.location.reload();
 
           // let user = {
           //   email: '',
@@ -103,7 +102,7 @@ export default {
     isLoggedIn() {
       return localStorage.getItem("login");
     },
-    
+
   }
 }
 </script>

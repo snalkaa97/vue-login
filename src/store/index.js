@@ -16,12 +16,16 @@ export default new Vuex.Store({
       email: "",
       token: "",
     },
+    profile:{},
     isLoggedIn: false,
     baseUrl: "http://shayna-backend.local/api",
   },
   mutations: {
     setUser(state, user) {
       state.user = user;
+    },
+    setProfile(state, profile) {
+      state.profile = profile;
     },
     setIsLoggedIn(state, isLoggedIn) {
       state.isLoggedIn = isLoggedIn;
@@ -30,6 +34,7 @@ export default new Vuex.Store({
   getters: {
     user: state => state.user,
     IsLoggedIn: state => state.isLoggedIn,
+    profile: state => state.profile,
     baseUrl: state => state.baseUrl,
   },
   actions: {
